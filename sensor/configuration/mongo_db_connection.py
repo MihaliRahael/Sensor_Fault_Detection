@@ -9,7 +9,6 @@ from sensor.constant.database import DATABASE_NAME
 
 ca = certifi.where()
 
-
 class MongoDBClient:
     client = None
 
