@@ -116,6 +116,7 @@ class TrainPipeline:
             TrainPipeline.is_pipeline_running=False
             self.sync_artifact_dir_to_s3()
             self.sync_saved_model_dir_to_s3()
+            
         except  Exception as e:
             self.sync_artifact_dir_to_s3() # even if any pipeline fails, sync until then
             TrainPipeline.is_pipeline_running=False
