@@ -35,6 +35,12 @@ The problem is to reduce the cost due to unnecessary repairs. So it is required 
 ### Dataset
 https://archive.ics.uci.edu/ml/datasets/APS+Failure+at+Scania+Trucks 
 
+### Result from EDA and experiments
+Best Model is XGBoost Classifier with 99.6% accuracy and cost of 2950
+
 ### Project Archietecture
+![image](https://user-images.githubusercontent.com/106816732/216809901-768341a7-b54b-4880-b74f-39c49420d17d.png)
+
+### Code flow
 ![0_Sensor Training Pipeline](https://user-images.githubusercontent.com/106816732/216809181-b64110a6-2031-495d-ac81-b7c8bce13ddc.png)
 
