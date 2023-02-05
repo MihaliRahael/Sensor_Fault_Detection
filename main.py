@@ -54,11 +54,19 @@ async def train_route():
     except Exception as e:
         return Response(f"Error Occurred! {e}")
 
+class results(BaseModel):
+    idx : int
+    prediction: int
+
 @app.get("/predict")
 async def predict_route():
     try:
-        #get data from user csv file
-        #conver csv file to dataframe
+        # Either we can pass the file or upload the file. 
+        # If we are just passing the file we need to get data from user csv file , convert csv file to dataframe 
+    
+        # Model training is done and the pickle file is saved in S3.
+        # Create a folder, bring this latest model pickle file from S3 to this folder, and then pass folder path.
+        # Model Resolver checks whether the model is available or not. then fetch the best model, do the prediction and display the result
 
         df=None
         model_resolver = ModelResolver(model_dir=SAVED_MODEL_DIR)
@@ -70,12 +78,31 @@ async def predict_route():
         y_pred = model.predict(df)
         df['predicted_column'] = y_pred
         df['predicted_column'].replace(TargetValueMapping().reverse_mapping(),inplace=True)
-        
-        #decide how to return file to user.
+        print(df['predicted_column'])
+        return (df['predicted_column'])
         
     except Exception as e:
         raise Response(f"Error Occured! {e}")
 
+
+'''
+# If we are uploading the file, we need to get data from user csv file , convert csv file to datafram
+@app.get("/predict-by-upload",response_model=List[results])
+async def predict_route(file: UploadFile):
+    try:
+        
+        cont =await file.read()
+        predictpipeline =PredictPipeline(cont,time=datetime.now())
+        pred_artifact = predictpipeline.run_pipeline()
+        
+        df = pd.read_csv(pred_artifact.prediction_file_path)
+        a= [results(idx = i, prediction=df.iloc[i,-1]) for i in range(df.shape[0])]
+        print(a)
+        return a
+        
+    except Exception as e:
+        raise Response(f"Error Occured! {e}")
+'''
 def main():
     try:
         set_env_variable(env_file_path)
