@@ -6,36 +6,35 @@ The Air Pressure System (APS) is a critical component of a heavy-duty vehicle th
 This is a Binary Classification problem, in which the affirmative class indicates that the failure was caused by a certain component of the APS, while the negative class
 indicates that the failure was caused by something else.
 
+The problem is to reduce the cost due to unnecessary repairs. So it is required to minimize the false predictions. ie we have to reduce false positives and false negatives. More importantly we have to reduce false negatives, since cost incurred due to false negative is 50 times higher than the false positives.
+
+### Objectives
+* Need to Handle many Null values in almost all columns
+* No low-latency requirement.
+* Interpretability is not important.
+* Misclassification leads the unecessary repair costs.
+
 ### Solution Proposed 
 In this project, the system in focus is the Air Pressure system (APS) which generates pressurized air that are utilized in various functions in a truck, such as braking and gear changes. The datasets positive class corresponds to component failures for a specific component of the APS system. The negative class corresponds to trucks with failures for components not related to the APS system.
 
 The problem is to reduce the cost due to unnecessary repairs. So it is required to minimize the false predictions.
-## Tech Stack Used
+### Tech Stack Used
 1. Python 
 2. FastAPI 
 3. Machine learning algorithms
 4. Docker
 5. MongoDB
 
-## Infrastructure Required.
+### Infrastructure Required.
 
 1. AWS S3
 2. AWS EC2
 3. AWS ECR
 4. Git Actions
-5. Terraform
 
-## How to run?
-Before we run the project, make sure that you are having MongoDB in your local system, with Compass since we are using MongoDB for data storage. You also need AWS account to access the service like S3, ECR and EC2 instances.
+### Dataset
+https://archive.ics.uci.edu/ml/datasets/APS+Failure+at+Scania+Trucks 
 
-## Data Collections
-![image](https://user-images.githubusercontent.com/57321948/193536736-5ccff349-d1fb-486e-b920-02ad7974d089.png)
-
-
-## Project Archietecture
-![image](https://user-images.githubusercontent.com/57321948/193536768-ae704adc-32d9-4c6c-b234-79c152f756c5.png)
-
-
-## Deployment Archietecture
-![image](https://user-images.githubusercontent.com/57321948/193536973-4530fe7d-5509-4609-bfd2-cd702fc82423.png)
+### Project Archietecture
+![0_Sensor Training Pipeline](https://user-images.githubusercontent.com/106816732/216809181-b64110a6-2031-495d-ac81-b7c8bce13ddc.png)
 
